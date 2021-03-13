@@ -50,8 +50,8 @@
 
 	  // If the count down is finished, write some text
 	  if (distance < 0) {
-		clearInterval(x); //http://crosman-host.tk/scriptek/vmix2_0/playliststart.php
-		document.getElementById("visszaszamol").innerHTML = window.location.replace("");
+		clearInterval(x);
+		document.getElementById("visszaszamol").innerHTML = window.location.replace("http://crosman-host.tk/scriptek/vmix2_0/playliststart.php");
 	  }
 	}, 1000);
 	</script>
