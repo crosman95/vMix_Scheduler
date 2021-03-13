@@ -1,6 +1,23 @@
 <?php
 	require_once("config.php");
 	$datum = playlist_date;
+	session_start();
+	if($_GET['la']){
+		$_SESSION['la'] = $_GET['la'];
+		header('Location:'.$_SERVER['PHP_SELF']);
+		exit();
+	}
+
+	switch($_SESSION['la']){
+		case "hun":
+			require('lang/hun.php');		
+		break;
+		case "eng":
+			require('lang/eng.php');		
+		break;
+		default: 
+			require('lang/'.default_lang.'.php');	
+		}
 ?>
 <html>
 <head>
@@ -28,13 +45,13 @@
 	  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 	  // Display the result in the element with id="demo"
-	  document.getElementById("visszaszamol").innerHTML = days + " day " + hours + " hour "
-	  + minutes + " minutes " + seconds + " seconds ";
+	  document.getElementById("visszaszamol").innerHTML = days + " <?=$lang['day'];?> " + hours + " <?=$lang['hour'];?> "
+	  + minutes + " <?=$lang['minute'];?> " + seconds + " <?=$lang['seconds'];?> ";
 
 	  // If the count down is finished, write some text
 	  if (distance < 0) {
-		clearInterval(x);
-		document.getElementById("visszaszamol").innerHTML = window.location.replace("http://crosman-host.tk/scriptek/vmix2_0/playliststart.php");
+		clearInterval(x); //http://crosman-host.tk/scriptek/vmix2_0/playliststart.php
+		document.getElementById("visszaszamol").innerHTML = window.location.replace("");
 	  }
 	}, 1000);
 	</script>
@@ -50,33 +67,43 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Index
+        <a class="nav-link" href="index.php"><?=$lang['home'];?>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="scheduler.php">Scheduler</a>
+        <a class="nav-link" href="scheduler.php"><?=$lang['scheduler'];?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="settings.php">Settings</a>
+        <a class="nav-link" href="settings.php"><?=$lang['settings'];?></a>
       </li>
     </ul>
   </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="?la=hu"><img src="img/flags/hu.png" /></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?la=eng"><img src="img/flags/england.png" /></a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <br /><br />
 
 <div class="container-fluid">
 	<div class="card border-primary mb-4">
-	  <div class="card-header">Scheduler</div>
+	  <div class="card-header"><?=$lang['scheduler-title'];?></div>
 	  <div class="card-body">
 		<p class="card-text">
 			<center>
-				<b>Playlist start after:</b>
+				<b><?=$lang['bold-top-text'];?></b>
 				<p id="visszaszamol"></p>
 				<?=playlist_date?>
 				<br />
 				<br />
-				Don't close this tab!
+				<?=$lang['warning-text'];?>
 			</center>
 		</p>
 	  </div>

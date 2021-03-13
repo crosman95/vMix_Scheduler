@@ -7,6 +7,9 @@
 // Script title
 define("title", "Vmix scheduler");
 
+// Default language: eng or hun
+define("default_lang", "hun");
+
 // Script site url
 define("site_url", "yourdomain.com/vmix2_0");
 
@@ -20,6 +23,6 @@ define("server_ip", "IP");
 define("server_port", "8088");
 
 // Playlist start date
-define("playlist_date", "Mar 11, 2021 18:00:00");
+define("playlist_date", "Mar 20, 2021 18:00:00");
 
 ?>
